@@ -29,6 +29,7 @@ public class TeamRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_team_register);
 
         setupViews();
+        registerTeam();
     }
 
     //Método de definição dos campos do formulario com variáveis.
@@ -39,19 +40,20 @@ public class TeamRegisterActivity extends AppCompatActivity {
         btRegister = findViewById(R.id.bt_register_team);
     }
 
-    public void registerTeam () {
-
-    }
-
     //Método onClick do botão de cadastro
-    public void onClickBtn(View view) {
+    public void registerTeam () {
+        btRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        String name = edName.getText().toString();
-        int year = Integer.parseInt(edYear.getText().toString());
-        String warCry = edWarCry.getText().toString();
+                String name = edName.getText().toString();
+                int year = Integer.parseInt(edYear.getText().toString());
+                String warCry = edWarCry.getText().toString();
 
-        dao.save(name, year, warCry);
+                dao.save(name, year, warCry);
 
-        startActivity(new Intent(TeamRegisterActivity.this, ListTeamsActivity.class));
+                finish();
+            }
+        });
     }
 }

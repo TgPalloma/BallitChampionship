@@ -1,0 +1,15 @@
+TELA DE CADASTRO DE TIMES
+Essa tela permite que você consiga cadastrar e editar os times que farão parte do campeonato que, caso seja iniciado, não permitirá mais edições.
+
+QUANTIDADE DE TIMES
+O campeonato deverá ter sempre um numero par de times. O mínimo exigido para sua realização são 8 times, tendo como limite 16 times. Uma vez alcançado o limite máximo, não será permitida a innscrição de outro time.
+
+COMO CADASTRAR UM TIME
+A partir do botão que se encontra no canto inferio direito, abaixo do botão de ajuda você conseguirá cadastrar um novo time por vêz. Uma vez salvo, você retornará para a tela inicial de listagem dos times e caso queira cadastrar outro time, basta repetir o processo.
+Cada time tem:
+NOME: Onde será cadastrado o nome da equipe.
+ANO DE FUNDAÇÃO: Ano em que a equipe foi fundada.
+GRITO DE GUERRA: Grito de guerra da  equipe.
+O sistema não permite que um time seja cadastrado sem que todos os campos estejam devidamente preenchidos.
+
+
