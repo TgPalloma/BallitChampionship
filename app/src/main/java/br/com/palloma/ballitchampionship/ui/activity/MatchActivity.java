@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import br.com.palloma.ballitchampionship.R;
 
-public class MatcheActivity extends AppCompatActivity {
+public class MatchActivity extends AppCompatActivity {
 
     Button btnBlotTeamA;
     Button btnBlotTeamB;

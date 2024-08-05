@@ -44,6 +44,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bt_start_match"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Iniciar!"

@@ -22,8 +22,8 @@ public class ChanpionshipDAO {
         }
     }
 
-    public ArrayList<Match> getList () {
-        return new ArrayList<>(matches);
+    public List<Match> getList () {
+        return matches;
     }
 
     public boolean getProgressStatus () {

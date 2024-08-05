@@ -15,6 +15,10 @@ import br.com.palloma.ballitchampionship.model.Team;
 
 public class TeamRegisterActivity extends AppCompatActivity {
 
+    /*A Activity de cadastro de equipes só pode ser acessada caso o numero de equipes já cadastrados
+    *seja menor que 16 ou que o campeonato ainda não tenha iniciado. uma vez iniciado não
+    *não há mais acessar essa activity pois o botão ficará bloqueado.*/
+
     //Declaração de Variáveis dos campos
     EditText etName;
     EditText etYear;
@@ -25,6 +29,9 @@ public class TeamRegisterActivity extends AppCompatActivity {
     //Classe responsável por acessar o banco de dados (ainda in memoria)
     TeamDAO dao = new TeamDAO();
 
+    /*Variável usada para pegar a posição na lista. O padrão 20 vem configurado para novos cadastros
+    * caso seja diferente disso, a edição ou delete da equipe é habilitada e essa variável é reatribuida
+    * para buscar a equipe cadastrada na lista*/
     int position = 20;
 
     @Override
@@ -34,6 +41,8 @@ public class TeamRegisterActivity extends AppCompatActivity {
 
         setupViews();
 
+        /*Recebe e avalia se alguma informação chegou da activity pai para habilitar edição ou
+        *cadastrar um numero novo */
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             position = extras.getInt("position");
@@ -53,6 +62,7 @@ public class TeamRegisterActivity extends AppCompatActivity {
 
     }
 
+    //Método que atribui os valores de uma equipe já existente aos campos de preenchimento para alteração.
     public void getDataTeam () {
         btRegister.setText("Salvar Alterações");
         btDelete.setVisibility(View.VISIBLE);
@@ -61,7 +71,7 @@ public class TeamRegisterActivity extends AppCompatActivity {
         etWarCry.setText(dao.getTeam(position).getWarCry());
     }
 
-    //Método onClick do botão de cadastro
+    //Método onClick do botão de cadastro ou atualização
     public void registerTeam () {
         btRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +87,7 @@ public class TeamRegisterActivity extends AppCompatActivity {
         });
     }
 
+    //Método para deletar uma equipe.
     public void deleteTeam() {
         btDelete.setOnClickListener(new View.OnClickListener() {
             @Override

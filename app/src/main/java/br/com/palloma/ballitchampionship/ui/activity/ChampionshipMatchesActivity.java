@@ -9,14 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import br.com.palloma.ballitchampionship.R;
 import br.com.palloma.ballitchampionship.dao.ChanpionshipDAO;
 import br.com.palloma.ballitchampionship.model.Match;
+import br.com.palloma.ballitchampionship.ui.adapter.MatchAdapter;
 
 public class ChampionshipMatchesActivity extends AppCompatActivity {
 
-    private ListView listGames;
+    private RecyclerView listGames;
 
     private final ChanpionshipDAO dao = new ChanpionshipDAO();
 
@@ -40,8 +43,9 @@ public class ChampionshipMatchesActivity extends AppCompatActivity {
     }
 
     public void matchesListSetup () {
-        listGames.setAdapter(new ArrayAdapter<Match>(this, android.R.layout.simple_list_item_1, dao.getList()));
+        MatchAdapter adapter = new MatchAdapter(dao.getList());
+        listGames.setLayoutManager(new LinearLayoutManager(this));
+        listGames.setAdapter(adapter);
+
     }
-
-
 }

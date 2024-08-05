@@ -19,6 +19,14 @@ public class Match {
         this.teamBPoints = 50;
     }
 
+    public Team getTeamA() {
+        return teamA;
+    }
+
+    public Team getTeamB() {
+        return teamB;
+    }
+
     public void addBlotA () {
         teamAPoints += 5;
     }

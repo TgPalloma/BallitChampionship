@@ -49,6 +49,7 @@ public class ListTeamsActivity extends AppCompatActivity {
         super.onResume();
         setupListView();
         checkTeamsNumber();
+        startChanpionShip();
     }
 
     public void setupViews() {

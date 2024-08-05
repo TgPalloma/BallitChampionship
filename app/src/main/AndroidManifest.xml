@@ -13,22 +13,26 @@
         android:theme="@style/Theme.BallitChampionship"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.MatcheActivity"
+            android:name=".ui.activity.MatchActivity"
+            android:screenOrientation="portrait"
             android:exported="false">
         </activity>
         <activity
             android:name=".ui.activity.ChampionshipMatchesActivity"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            android:exported="false"/>
         <activity
             android:name=".ui.activity.ListTeamsActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.TeamRegisterActivity" />
+        <activity
+            android:name=".ui.activity.TeamRegisterActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
