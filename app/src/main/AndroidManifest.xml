@@ -13,6 +13,10 @@
         android:theme="@style/Theme.BallitChampionship"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.MatcheActivity"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".ui.activity.ChampionshipMatchesActivity"
             android:exported="false" />
         <activity
@@ -24,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.TeamRegisterActivity"></activity>
+        <activity android:name=".ui.activity.TeamRegisterActivity" />
     </application>
 
 </manifest>

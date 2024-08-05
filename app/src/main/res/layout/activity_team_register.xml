@@ -80,7 +80,7 @@
                 android:hint="Grito de Guerra" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_register_team"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,9 +88,18 @@
             android:text="Cadastrar"
             app:layout_constraintTop_toBottomOf="@+id/til_team_warcry"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="1"/>
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_delete_team"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:visibility="invisible"
+            android:text="Deletar"
+            app:layout_constraintTop_toBottomOf="@+id/bt_register_team"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

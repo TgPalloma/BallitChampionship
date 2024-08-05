@@ -7,11 +7,11 @@ public class Teams {
     private TeamDAO dao = new TeamDAO();
 
     public void addTeamXp() {
-        dao.save("Pallominha", 1986, "Pica das Galaxias");
-        dao.save("Nina", 1988, "Xaropisse a vida toda!");
-        dao.save("Raquel", 1986, "Em casa a qualquer custo");
-        dao.save("Helenara", 1965, "Vou para a Grécia!");
-        dao.save("Érico", 1938, "Sou safadenho...");
+        dao.save("Pallominha", 1986, "Pica das Galaxias",20);
+        dao.save("Nina", 1988, "Xaropisse a vida toda!",20);
+        dao.save("Raquel", 1986, "Em casa a qualquer custo",20);
+        dao.save("Helenara", 1965, "Vou para a Grécia!",20);
+        dao.save("Érico", 1938, "Sou safadenho...",20);
     }
 
 }

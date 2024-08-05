@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -40,6 +41,7 @@ public class ListTeamsActivity extends AppCompatActivity {
         addTeam();
         help();
         startChanpionShip();
+        editTeam();
     }
 
     @Override
@@ -90,6 +92,19 @@ public class ListTeamsActivity extends AppCompatActivity {
         } else {
             btnStarChampionship.setEnabled(true);
         }
+    }
+
+    public void editTeam () {
+        listTeam.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                Intent intent = new Intent(ListTeamsActivity.this, TeamRegisterActivity.class);
+                intent.putExtra("position", position);
+                startActivity(intent);
+            }
+        });
     }
 
     public void startChanpionShip () {

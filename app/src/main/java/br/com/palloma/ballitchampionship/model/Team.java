@@ -4,23 +4,16 @@ import java.util.Random;
 
 public class Team {
 
-    private Integer id;
     private String name;
     private Integer year;
     private String WarCry;
+    private Integer points = 0;
 
     public Team(String name, Integer year, String warCry) {
-
-        Random random = new Random();
-        this.id = random.nextInt(20);
 
         this.name = name;
         this.year = year;
         WarCry = warCry;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getName() {
@@ -33,6 +26,18 @@ public class Team {
 
     public String getWarCry() {
         return WarCry;
+    }
+
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void addPointsBeforematche (int ponts) {
+        this.points += points;
+    }
+
+    public void advrungh () {
+        this.points -= 10;
     }
 
     @Override

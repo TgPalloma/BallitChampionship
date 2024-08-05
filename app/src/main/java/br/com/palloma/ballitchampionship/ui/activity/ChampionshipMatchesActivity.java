@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import br.com.palloma.ballitchampionship.R;
 import br.com.palloma.ballitchampionship.dao.ChanpionshipDAO;
-import br.com.palloma.ballitchampionship.model.Team;
+import br.com.palloma.ballitchampionship.model.Match;
 
 public class ChampionshipMatchesActivity extends AppCompatActivity {
 
@@ -40,7 +40,7 @@ public class ChampionshipMatchesActivity extends AppCompatActivity {
     }
 
     public void matchesListSetup () {
-        listGames.setAdapter(new ArrayAdapter<Team>(this, android.R.layout.simple_list_item_1, dao.getList()));
+        listGames.setAdapter(new ArrayAdapter<Match>(this, android.R.layout.simple_list_item_1, dao.getList()));
     }
 
 
