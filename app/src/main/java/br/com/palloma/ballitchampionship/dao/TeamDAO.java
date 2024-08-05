@@ -1,32 +1,51 @@
 package br.com.palloma.ballitchampionship.dao;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Random;
 
 import br.com.palloma.ballitchampionship.model.Team;
 
 public class TeamDAO {
 
-    private static List<Team> teamsList = new ArrayList<>();
+    private static HashMap<Integer,Team> teamsHash = new HashMap<>();
 
-    public void save(String name, int year, String warCry, int position) {
+    public void save(String name, int year, String warCry, Integer id) {
+        Random r = new Random();
 
-        if (position == 20) {
-            teamsList.add(new Team(name, year, warCry));
+        if (id==51) {
+            do{
+                id = r.nextInt(50);
+            } while(containsIdTeam(id));
+
+            teamsHash.replace(id, new Team(name, year, warCry,id));
         } else {
-            teamsList.set(position, new Team(name, year, warCry));
+            teamsHash.put(id, new Team(name, year, warCry,id));
         }
     }
 
+    public boolean containsIdTeam (Integer id) {
+        if (teamsHash.containsKey(id)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void teamPoints (int cod, String teamName) {
+
+    }
+
     public ArrayList<Team> getTeamsList() {
-        return new ArrayList<>(teamsList);
+        return new ArrayList<>(teamsHash.values());
     }
 
     public Team getTeam (int position) {
-        return teamsList.get(position);
+        return teamsHash.get(position);
     }
 
     public void deleteTeam(int id) {
-        teamsList.remove(id);
+        teamsHash.remove(id);
     }
 }

@@ -12,20 +12,28 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import br.com.palloma.ballitchampionship.R;
+import br.com.palloma.ballitchampionship.dao.ChanpionshipDAO;
 
 public class MatchActivity extends AppCompatActivity {
 
-    Button btnBlotTeamA;
-    Button btnBlotTeamB;
+    private Button btnBlotTeamA;
+    private Button btnBlotTeamB;
 
-    Button btnPlifTeamA;
-    Button btnPlifTeamB;
+    private Button btnPlifTeamA;
+    private Button btnPlifTeamB;
 
-    TextView tvPointsTeamA;
-    TextView tvPointsTeamB;
+    private TextView tvPointsTeamA;
+    private TextView tvPointsTeamB;
 
-    Integer pontosA = 0;
-    Integer pontosB = 0;
+    private TextView tvNameTeamA;
+    private TextView tvNameTeamB;
+
+    private Integer pontosA = 50;
+    private Integer pontosB = 50;
+
+    private int position;
+
+    ChanpionshipDAO daoChampionship = new ChanpionshipDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +45,19 @@ public class MatchActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        setTitle("Partida");
+
+        Bundle extras = getIntent().getExtras();
+        position = extras.getInt("position");
         setupViews();
+        setupTeams();
         setupClicsBlots();
         setupCliscsPlifts();
     }
 
     public void setupViews () {
+        tvNameTeamA = findViewById(R.id.tv_match_activity_name_team_a);
+        tvNameTeamB = findViewById(R.id.tv_match_activity_name_team_b);
+
         btnBlotTeamA = findViewById(R.id.bt_matche_blot_team_a);
         btnBlotTeamB = findViewById(R.id.bt_matche_blot_team_b);
 
@@ -52,6 +66,13 @@ public class MatchActivity extends AppCompatActivity {
 
         tvPointsTeamA = findViewById(R.id.tv_point_team_a);
         tvPointsTeamB = findViewById(R.id.tv_point_team_b);
+    }
+
+    public void setupTeams () {
+        tvNameTeamA.setText(daoChampionship.getList().get(position).getTeamA().getName().toString());
+        tvNameTeamB.setText(daoChampionship.getList().get(position).getTeamB().getName().toString());
+        tvPointsTeamB.setText(pontosB.toString());
+        tvPointsTeamA.setText(pontosA.toString());
     }
 
     public void setupClicsBlots () {
@@ -90,5 +111,11 @@ public class MatchActivity extends AppCompatActivity {
                 tvPointsTeamA.setText(pontosA.toString());
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Não faz nada
+        super.onBackPressed();
     }
 }

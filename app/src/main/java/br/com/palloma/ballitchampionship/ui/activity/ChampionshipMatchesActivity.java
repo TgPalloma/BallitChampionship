@@ -1,8 +1,10 @@
 package br.com.palloma.ballitchampionship.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,7 +45,8 @@ public class ChampionshipMatchesActivity extends AppCompatActivity {
     }
 
     public void matchesListSetup () {
-        MatchAdapter adapter = new MatchAdapter(dao.getList());
+        Intent intent = new Intent(ChampionshipMatchesActivity.this, MatchActivity.class);
+        MatchAdapter adapter = new MatchAdapter(dao.getList(),ChampionshipMatchesActivity.this, intent);
         listGames.setLayoutManager(new LinearLayoutManager(this));
         listGames.setAdapter(adapter);
 

@@ -2,6 +2,8 @@ package br.com.palloma.ballitchampionship.ui.adapter;
 
 import static androidx.core.content.ContextCompat.startActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,10 +24,15 @@ import br.com.palloma.ballitchampionship.ui.activity.TeamRegisterActivity;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHolder> {
 
-    List<Match> matches;
+    private final List<Match> matches;
+    private final Intent intent;
+    private final Context contex;
 
-    public MatchAdapter(List<Match> matchesList) {
+
+    public MatchAdapter(List<Match> matchesList, Context context, Intent intent) {
         this.matches = matchesList;
+        this.intent = intent;
+        contex = context;
     }
 
     public static class MatchViewHolder extends RecyclerView.ViewHolder {
@@ -44,16 +51,24 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
 
     @NonNull
     @Override
-    public MatchAdapter.MatchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MatchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.match_item, parent, false);
         MatchViewHolder mvh = new MatchViewHolder(v);
         return mvh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MatchAdapter.MatchViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MatchViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.teamNameA.setText(matches.get(position).getTeamA().getName());
         holder.teamNameB.setText(matches.get(position).getTeamB().getName());
+
+        holder.btStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("position", position);
+                contex.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -38,10 +38,11 @@ public class ListTeamsActivity extends AppCompatActivity {
         }
         setupViews();
         setupListView();
+        checkTeamsNumber();
         addTeam();
         help();
-        startChanpionShip();
         editTeam();
+        startChanpionShip();
     }
 
     @Override
@@ -102,7 +103,7 @@ public class ListTeamsActivity extends AppCompatActivity {
                                     int position, long id) {
 
                 Intent intent = new Intent(ListTeamsActivity.this, TeamRegisterActivity.class);
-                intent.putExtra("position", position);
+                intent.putExtra("id", position);
                 startActivity(intent);
             }
         });
@@ -113,6 +114,7 @@ public class ListTeamsActivity extends AppCompatActivity {
             btnStarChampionship.setText("INICIAR CAMPEONATO");
         } else {
             btnStarChampionship.setText("ACESSAR CAMPEONATO EM ANDAMENTO");
+            fabAddTeam.setEnabled(false);
         }
 
         btnStarChampionship.setOnClickListener(new View.OnClickListener() {

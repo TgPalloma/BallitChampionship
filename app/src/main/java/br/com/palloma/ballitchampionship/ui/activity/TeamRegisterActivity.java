@@ -32,7 +32,7 @@ public class TeamRegisterActivity extends AppCompatActivity {
     /*Variável usada para pegar a posição na lista. O padrão 20 vem configurado para novos cadastros
     * caso seja diferente disso, a edição ou delete da equipe é habilitada e essa variável é reatribuida
     * para buscar a equipe cadastrada na lista*/
-    int position = 20;
+    int id = 51;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class TeamRegisterActivity extends AppCompatActivity {
         *cadastrar um numero novo */
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            position = extras.getInt("position");
+            id = extras.getInt("id");
             getDataTeam();
             deleteTeam();
         }
@@ -66,9 +66,9 @@ public class TeamRegisterActivity extends AppCompatActivity {
     public void getDataTeam () {
         btRegister.setText("Salvar Alterações");
         btDelete.setVisibility(View.VISIBLE);
-        etName.setText(dao.getTeam(position).getName());
-        etYear.setText(dao.getTeam(position).getYear().toString());
-        etWarCry.setText(dao.getTeam(position).getWarCry());
+        etName.setText(dao.getTeam(id).getName());
+        etYear.setText(dao.getTeam(id).getYear().toString());
+        etWarCry.setText(dao.getTeam(id).getWarCry());
     }
 
     //Método onClick do botão de cadastro ou atualização
@@ -81,7 +81,7 @@ public class TeamRegisterActivity extends AppCompatActivity {
                 Integer year = Integer.parseInt(etYear.getText().toString());
                 String warCry = etWarCry.getText().toString();
 
-                dao.save(name, year, warCry,position);
+                dao.save(name, year, warCry,id);
                 finish();
             }
         });
@@ -92,7 +92,7 @@ public class TeamRegisterActivity extends AppCompatActivity {
         btDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dao.deleteTeam(position);
+                dao.deleteTeam(id);
                 finish();
             }
         });

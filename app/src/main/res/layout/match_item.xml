@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:backgroundTintMode="src_over"
-        android:backgroundTint="#250042C7"
+        android:backgroundTint="@color/gray_itens"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,15 +33,47 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
+                android:id="@+id/tvnu_match_item_points_team_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pontos: "
+                app:layout_constraintStart_toStartOf="@id/tv_match_item_name_team_a"
+                app:layout_constraintTop_toBottomOf="@id/tv_match_item_name_team_a"/>
+
+            <TextView
+                android:id="@+id/tv_match_item_points_team_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="2520"
+                app:layout_constraintStart_toEndOf="@id/tvnu_match_item_points_team_a"
+                app:layout_constraintTop_toTopOf="@id/tvnu_match_item_points_team_a"/>
+
+            <TextView
                 android:id="@+id/tv_match_item_name_team_b"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="20dp"
                 tools:text="Time B"
                 tools:textColor="@color/red_lose_text"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/tv_match_item_name_team_a"
+                app:layout_constraintTop_toBottomOf="@id/tvnu_match_item_points_team_a"
                 app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/tvnu_match_item_points_team_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pontos: "
+                app:layout_constraintStart_toStartOf="@id/tv_match_item_name_team_b"
+                app:layout_constraintTop_toBottomOf="@id/tv_match_item_name_team_b"/>
+
+            <TextView
+                android:id="@+id/tv_match_item_points_team_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="2520"
+                app:layout_constraintStart_toEndOf="@id/tvnu_match_item_points_team_b"
+                app:layout_constraintTop_toTopOf="@id/tvnu_match_item_points_team_b"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_start_match"
