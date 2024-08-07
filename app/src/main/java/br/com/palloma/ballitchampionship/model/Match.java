@@ -7,6 +7,7 @@ public class Match {
     private Integer teamAPoints;
     private Integer teamBPoints;
     private Boolean status;
+    private int Stage;
 
     //As equipes começam uma partida com 50 pontos cada uma
     // - Blot: Objetivo do jogo +5 pontos
@@ -17,6 +18,14 @@ public class Match {
         this.teamB = teamB;
         this.teamAPoints = 50;
         this.teamBPoints = 50;
+    }
+
+    public int getStage() {
+        return Stage;
+    }
+
+    public void setStage(int stage) {
+        Stage = stage;
     }
 
     public Team getTeamA() {

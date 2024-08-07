@@ -18,6 +18,14 @@ public class Team {
         WarCry = warCry;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -34,33 +42,7 @@ public class Team {
         return points;
     }
 
-    public void setupWinPoints (int cod) {
-
-        /*Código de cada tipo de pontuação
-        100 - Inicio de pártida = 50
-        200 - Blot = 5
-        250 - Plift = 1
-        300 - Advrungh! = -10
-         */
-
-        switch (cod) {
-            case 100: points += 50;
-                break;
-
-            case 200: points += 5;
-                break;
-
-            case 250: points += 1;
-                break;
-
-            case 300: points -= 10;
-                break;
-        }
-    }
-
-    @Override
-    public String toString() {
-        return name + "\n"
-                + year;
+    public void setPoints(Integer points) {
+        this.points = points;
     }
 }

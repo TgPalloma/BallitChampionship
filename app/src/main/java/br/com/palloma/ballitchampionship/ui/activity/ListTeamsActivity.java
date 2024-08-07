@@ -1,6 +1,8 @@
 package br.com.palloma.ballitchampionship.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,35 +15,40 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.palloma.ballitchampionship.R;
 import br.com.palloma.ballitchampionship.dao.ChanpionshipDAO;
 import br.com.palloma.ballitchampionship.dao.TeamDAO;
 import br.com.palloma.ballitchampionship.data.Teams;
+import br.com.palloma.ballitchampionship.model.Team;
+import br.com.palloma.ballitchampionship.ui.adapter.TeamAdapter;
 
 public class ListTeamsActivity extends AppCompatActivity {
 
-    ListView listTeam;
+    RecyclerView listTeam;
     FloatingActionButton fabAddTeam;
     FloatingActionButton fabHelp;
     Button btnStarChampionship;
 
     private final TeamDAO teamDao = new TeamDAO();
     private final ChanpionshipDAO csDao = new ChanpionshipDAO();
-    private final Teams teamsXP = new Teams();
+    private final Teams teams = new Teams();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_teams);
-        if(!csDao.getProgressStatus()){
-            teamsXP.addTeamXp();
-        }
+
+        if (teamDao.getTeamsList().isEmpty())
+            teams.teamXP();
+
         setupViews();
         setupListView();
         checkTeamsNumber();
         addTeam();
         help();
-        editTeam();
         startChanpionShip();
     }
 
@@ -61,7 +68,10 @@ public class ListTeamsActivity extends AppCompatActivity {
     }
 
     public void setupListView () {
-        listTeam.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, teamDao.getTeamsList()));
+        Intent intent = new Intent(ListTeamsActivity.this, TeamRegisterActivity.class);
+        TeamAdapter adapter = new TeamAdapter(teamDao.getTeamsList(), ListTeamsActivity.this, intent);
+        listTeam.setLayoutManager(new LinearLayoutManager(this));
+        listTeam.setAdapter(adapter);
     }
 
     public void addTeam() {
@@ -94,19 +104,6 @@ public class ListTeamsActivity extends AppCompatActivity {
         } else {
             btnStarChampionship.setEnabled(true);
         }
-    }
-
-    public void editTeam () {
-        listTeam.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                Intent intent = new Intent(ListTeamsActivity.this, TeamRegisterActivity.class);
-                intent.putExtra("id", position);
-                startActivity(intent);
-            }
-        });
     }
 
     public void startChanpionShip () {

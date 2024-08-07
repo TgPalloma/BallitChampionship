@@ -1,51 +1,61 @@
 package br.com.palloma.ballitchampionship.dao;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
+import br.com.palloma.ballitchampionship.data.Teams;
 import br.com.palloma.ballitchampionship.model.Team;
 
 public class TeamDAO {
 
-    private static HashMap<Integer,Team> teamsHash = new HashMap<>();
+    private static List<Team> teamsList = new ArrayList<>();
+    private static Random r = new Random();
 
-    public void save(String name, int year, String warCry, Integer id) {
-        Random r = new Random();
+    public void save(String name, int year, String warCry, int id) {
 
-        if (id==51) {
-            do{
-                id = r.nextInt(50);
-            } while(containsIdTeam(id));
-
-            teamsHash.replace(id, new Team(name, year, warCry,id));
+        if (id == 101) {
+            teamsList.add(new Team(name, year, warCry, r.nextInt(100)));
         } else {
-            teamsHash.put(id, new Team(name, year, warCry,id));
+            for (int i=0; i<16; i++) {
+                if (teamsList.get(i).getId() == id) {
+                    teamsList.set(i, new Team(name, year, warCry, id));
+                    break;
+                }
+            }
         }
     }
 
-    public boolean containsIdTeam (Integer id) {
-        if (teamsHash.containsKey(id)) {
-            return true;
+    public void teamPoints (int id, int points) {
+        for (int i=0; i<16; i++) {
+            if (teamsList.get(i).getId() == id) {
+                teamsList.get(i).setPoints(points);
+                break;
+            }
         }
-        else {
-            return false;
+    }
+
+    public List<Team> getTeamsList() {
+        return teamsList;
+    }
+
+    /**Buscar pelo id e retorna o time**/
+    public Team getTeam (int id) {
+        for (Team team: teamsList) {
+            if (team.getId() == id)
+                return team;
         }
-    }
-
-    public void teamPoints (int cod, String teamName) {
-
-    }
-
-    public ArrayList<Team> getTeamsList() {
-        return new ArrayList<>(teamsHash.values());
-    }
-
-    public Team getTeam (int position) {
-        return teamsHash.get(position);
+        return null;
     }
 
     public void deleteTeam(int id) {
-        teamsHash.remove(id);
+        for (int i=0; i<16; i++) {
+            if (teamsList.get(i).getId() == id) {
+                teamsList.remove(i);
+                break;
+            }
+        }
     }
 }

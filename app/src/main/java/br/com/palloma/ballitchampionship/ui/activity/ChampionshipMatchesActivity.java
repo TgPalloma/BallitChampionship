@@ -37,14 +37,14 @@ public class ChampionshipMatchesActivity extends AppCompatActivity {
         });
 
         setupViews();
-        matchesListSetup ();
+        setupMatchesList ();
     }
 
     public void setupViews () {
         listGames = findViewById(R.id.lv_championship_matches_list);
     }
 
-    public void matchesListSetup () {
+    public void setupMatchesList () {
         Intent intent = new Intent(ChampionshipMatchesActivity.this, MatchActivity.class);
         MatchAdapter adapter = new MatchAdapter(dao.getList(),ChampionshipMatchesActivity.this, intent);
         listGames.setLayoutManager(new LinearLayoutManager(this));

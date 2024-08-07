@@ -1,7 +1,5 @@
 package br.com.palloma.ballitchampionship.ui.adapter;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -18,9 +16,6 @@ import java.util.List;
 
 import br.com.palloma.ballitchampionship.R;
 import br.com.palloma.ballitchampionship.model.Match;
-import br.com.palloma.ballitchampionship.ui.activity.ChampionshipMatchesActivity;
-import br.com.palloma.ballitchampionship.ui.activity.ListTeamsActivity;
-import br.com.palloma.ballitchampionship.ui.activity.TeamRegisterActivity;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHolder> {
 

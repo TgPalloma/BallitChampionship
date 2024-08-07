@@ -15,9 +15,9 @@ import br.com.palloma.ballitchampionship.model.Team;
 
 public class TeamRegisterActivity extends AppCompatActivity {
 
-    /*A Activity de cadastro de equipes só pode ser acessada caso o numero de equipes já cadastrados
+    /**A Activity de cadastro de equipes só pode ser acessada caso o numero de equipes já cadastrados
     *seja menor que 16 ou que o campeonato ainda não tenha iniciado. uma vez iniciado não
-    *não há mais acessar essa activity pois o botão ficará bloqueado.*/
+    *não há mais acessar essa activity pois o botão ficará bloqueado.**/
 
     //Declaração de Variáveis dos campos
     EditText etName;
@@ -29,10 +29,10 @@ public class TeamRegisterActivity extends AppCompatActivity {
     //Classe responsável por acessar o banco de dados (ainda in memoria)
     TeamDAO dao = new TeamDAO();
 
-    /*Variável usada para pegar a posição na lista. O padrão 20 vem configurado para novos cadastros
-    * caso seja diferente disso, a edição ou delete da equipe é habilitada e essa variável é reatribuida
-    * para buscar a equipe cadastrada na lista*/
-    int id = 51;
+    /**Variável usada para pegar a posição na lista. O padrão 20 vem configurado para novos cadastros
+    caso seja diferente disso, a edição ou delete da equipe é habilitada e essa variável é reatribuida
+    para buscar a equipe cadastrada na lista**/
+    int id = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class TeamRegisterActivity extends AppCompatActivity {
                 Integer year = Integer.parseInt(etYear.getText().toString());
                 String warCry = etWarCry.getText().toString();
 
-                dao.save(name, year, warCry,id);
+                dao.save(name, year, warCry, id);
                 finish();
             }
         });
