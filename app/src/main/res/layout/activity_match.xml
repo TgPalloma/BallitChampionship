@@ -99,7 +99,6 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#25FF0000"
         android:layout_margin="10dp"
-
         app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -190,14 +189,154 @@
         app:layout_constraintTop_toBottomOf="@id/cv_matche_teamB" />
 
     <TextView
-        android:id="@+id/tv_timer"
+        android:id="@+id/tv_match_activity_title_tiebreaker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GRUSHT!"
+        android:textSize="20dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/bt_match_advrungh"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_countdown_timer"/>
+
+    <TextView
+        android:id="@+id/tv_countdown_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="40dp"
+        android:text="00:60"
+        android:visibility="invisible"
+        android:layout_marginTop="30dp"
         app:layout_constraintTop_toBottomOf="@id/bt_match_advrungh"
-        app:layout_constraintBottom_toTopOf="@id/bt_match_end_match"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvnu_tierbreaker_team_a"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@id/bt_match_advrungh"
+        app:layout_constraintTop_toBottomOf="@id/tv_countdown_timer"
+        app:layout_constraintBottom_toTopOf="@id/cv_match_activity_winner_team"
+        app:layout_constraintEnd_toStartOf="@id/cvnu_tierbreaker_team_b">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_match_activity_tierbreaker_name_team_a"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textAlignment="viewStart"
+                tools:text="Time A"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_match_activity_tierbreaker_name_team_a_db"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="87,2dB"
+                android:textSize="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_match_activity_tierbreaker_name_team_a"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvnu_tierbreaker_team_b"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@id/cvnu_tierbreaker_team_a"
+        app:layout_constraintEnd_toEndOf="@id/bt_match_advrungh"
+        app:layout_constraintTop_toBottomOf="@id/tv_countdown_timer"
+        app:layout_constraintBottom_toTopOf="@id/cv_match_activity_winner_team">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_match_activity_tierbreaker_name_team_b"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textAlignment="viewEnd"
+                tools:text="Time B"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_match_activity_tierbreaker_name_team_b_db"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="90,2dB"
+                android:textSize="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_match_activity_tierbreaker_name_team_b"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_match_activity_winner_team"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/green_win_text"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bt_match_end_match">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_match_activity_name_team_win"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                tools:text="Time Ganhador!" />
+
+            <TextView
+                android:id="@+id/tv_match_activity_warcry_team_win"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                tools:text="Grito de guerra do vencedor"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+        
+    </androidx.cardview.widget.CardView>
+        
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_match_end_match"

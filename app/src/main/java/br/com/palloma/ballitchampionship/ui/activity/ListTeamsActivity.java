@@ -117,11 +117,16 @@ public class ListTeamsActivity extends AppCompatActivity {
         btnStarChampionship.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent intent = new Intent(ListTeamsActivity.this, ChampionshipMatchesActivity.class);
+
                 if(!csDao.getProgressStatus()) {
-                    csDao.shuffleTeams(teamDao.getTeamsList());
+                    intent.putExtra("status", true);
+                } else {
+                    intent.putExtra("status", false);
                 }
 
-                startActivity(new Intent(ListTeamsActivity.this, ChampionshipMatchesActivity.class));
+                startActivity(intent);
             }
         });
     }
