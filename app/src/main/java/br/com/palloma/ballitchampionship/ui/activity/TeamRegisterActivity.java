@@ -73,6 +73,7 @@ public class TeamRegisterActivity extends AppCompatActivity {
     }
 
     //Método onClick do botão de cadastro ou atualização
+    //Avalia o preenchimento de todos os campos
     public void registerTeam () {
         btRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,8 +83,12 @@ public class TeamRegisterActivity extends AppCompatActivity {
                 Integer year = Integer.parseInt(etYear.getText().toString());
                 String warCry = etWarCry.getText().toString();
 
-                if (year > 2024) {
+                if (year > 2024 || year.equals("")) {
                     Toast.makeText(TeamRegisterActivity.this, "Você veio do futuro? Coloque uma ano válido com 4 digitos", Toast.LENGTH_LONG).show();
+                } else if (name.isEmpty()){
+                    Toast.makeText(TeamRegisterActivity.this, "Qual o nome da equipe?", Toast.LENGTH_LONG).show();
+                } else if (warCry.isEmpty()) {
+                    Toast.makeText(TeamRegisterActivity.this, "Qual o grito de guerra que sua torcida irá bradar?", Toast.LENGTH_SHORT).show();
                 } else {
                     dao.save(name, year, warCry, id);
                     finish();

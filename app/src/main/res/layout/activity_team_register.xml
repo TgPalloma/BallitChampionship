@@ -37,6 +37,7 @@
                 android:id="@+id/et_team_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textCapWords"
                 android:maxLines="1"
                 android:maxLength="20"
                 android:hint="Nome" />
