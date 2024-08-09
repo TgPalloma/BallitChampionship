@@ -13,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import br.com.palloma.ballitchampionship.R;
 import br.com.palloma.ballitchampionship.dao.ChanpionshipDAO;
 import br.com.palloma.ballitchampionship.dao.TeamDAO;
@@ -22,6 +24,8 @@ public class ChampionshipMatchesActivity extends AppCompatActivity {
 
     private RecyclerView listGames;
     private Button btNewStage;
+    private FloatingActionButton fabRanking;
+    private FloatingActionButton fabAdvrungh;
 
     private final ChanpionshipDAO dao = new ChanpionshipDAO();
     private final TeamDAO teamDao = new TeamDAO();
@@ -45,6 +49,8 @@ public class ChampionshipMatchesActivity extends AppCompatActivity {
         dao.evaluateNewStage(ChampionshipMatchesActivity.this);
         setupViews();
         setupMatchesList ();
+        setupFabRanking();
+        setupFabAdvrung();
     }
 
     @Override
@@ -57,18 +63,29 @@ public class ChampionshipMatchesActivity extends AppCompatActivity {
     public void setupViews () {
         listGames = findViewById(R.id.rv_championship_matches_list);
         btNewStage = findViewById(R.id.bt_championship_new_stage);
+        fabRanking = findViewById(R.id.bt_championship_ranking);
+        fabAdvrungh = findViewById(R.id.fab_championship_advrungh);
     }
 
-    public void setupBtNewStage () {
-
-
-        btNewStage.setOnClickListener(new View.OnClickListener() {
+    public void setupFabRanking () {
+        fabRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(ChampionshipMatchesActivity.this, ListTeamsActivity.class);
+                startActivity(intent);
             }
         });
+    }
 
+    public void setupFabAdvrung () {
+        fabAdvrungh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChampionshipMatchesActivity.this, ListTeamsActivity.class);
+                intent.putExtra("advrung", true);
+                startActivity(intent);
+            }
+        });
     }
 
     public void setupMatchesList () {

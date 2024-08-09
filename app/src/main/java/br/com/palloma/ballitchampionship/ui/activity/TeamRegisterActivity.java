@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import br.com.palloma.ballitchampionship.R;
 import br.com.palloma.ballitchampionship.dao.TeamDAO;
@@ -81,8 +82,12 @@ public class TeamRegisterActivity extends AppCompatActivity {
                 Integer year = Integer.parseInt(etYear.getText().toString());
                 String warCry = etWarCry.getText().toString();
 
-                dao.save(name, year, warCry, id);
-                finish();
+                if (year > 2024) {
+                    Toast.makeText(TeamRegisterActivity.this, "Você veio do futuro? Coloque uma ano válido com 4 digitos", Toast.LENGTH_LONG).show();
+                } else {
+                    dao.save(name, year, warCry, id);
+                    finish();
+                }
             }
         });
     }

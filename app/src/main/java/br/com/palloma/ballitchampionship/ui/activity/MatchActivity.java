@@ -1,5 +1,6 @@
 package br.com.palloma.ballitchampionship.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -87,8 +88,9 @@ public class MatchActivity extends AppCompatActivity {
         setupTeams();
         setTextPointsAndMatchEnd();
         setupClicsBlots();
-        setupCliscsPlifts();
+        setupCliscsPlifs();
         setupEndMatch();
+        setupBtnAdvrungh();
     }
 
     //Relacionando as views nos layouts
@@ -125,6 +127,7 @@ public class MatchActivity extends AppCompatActivity {
         tvPointsTeamB.setText(match.getTeamAPoints().toString());
     }
 
+    //Aplica as configurações de Blots dos botões
     public void setupClicsBlots () {
 
         btnBlotTeamA.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +148,8 @@ public class MatchActivity extends AppCompatActivity {
         });
     }
 
-    public void setupCliscsPlifts () {
+    //Aplica as configurações de plifs dos botões
+    public void setupCliscsPlifs() {
 
         btnPlifTeamA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,6 +168,7 @@ public class MatchActivity extends AppCompatActivity {
         });
     }
 
+    //Verifica constantemente a necessidade ou não dem desempate
     public boolean tierbreakerVerify (Match match) {
         if (match.getTeamBPoints() == match.getTeamAPoints()) {
             return true;
@@ -172,6 +177,7 @@ public class MatchActivity extends AppCompatActivity {
         }
     }
 
+    // Junto com o método acima, faz uma atualização em tempo real dos botões
     public void setTextPointsAndMatchEnd () {
         tvPointsTeamA.setText(match.getTeamAPoints().toString());
         tvPointsTeamB.setText(match.getTeamBPoints().toString());
@@ -183,6 +189,8 @@ public class MatchActivity extends AppCompatActivity {
         }
     }
 
+    //Configura a finalização de uma partida. Caso avalie que seja necessário um desempate
+    //Sua execução se dará a partir daqui.
     public void setupEndMatch () {
         btnEndMatch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,6 +217,8 @@ public class MatchActivity extends AppCompatActivity {
         });
     }
 
+    //Caso seja necessário um desempate, as views referentes a essa seção irão ser ativadas.
+    //Elas não são ativadas antes para economizar recursos.
     public void setupTierbreakerViews () {
         cvTierbreakerTeamA = findViewById(R.id.cvnu_tierbreaker_team_a);
         cvTierbreakerTeamB = findViewById(R.id.cvnu_tierbreaker_team_b);
@@ -223,11 +233,17 @@ public class MatchActivity extends AppCompatActivity {
         tvTierbreakerTeamBDb = findViewById(R.id.tv_match_activity_tierbreaker_name_team_b_db);
     }
 
+    //Configuração das TextViews
     public void setupTierbreakerTexts (Match match) {
         tvTierbreakerTeamAName.setText(match.getTeamA().getName());
         tvTierbreakerTeamBName.setText(match.getTeamB().getName());
     }
 
+    /*Sistema de crinimetro para desempate
+    O cronometro vai rodar e a cada intervalo atualiza os valores de tela.
+    Ao mesmo tempo dois numeros randomicos são criados para simular decibelimetros de ambas as torcidas.
+    Ao final do tempo (60 millisegundos ou 60000) avaliar os dois numeros e aplica os pontos ao vencedor.
+     */
     public void tierbreaker (Match match) {
 
         disablePointsButtons();
@@ -235,7 +251,7 @@ public class MatchActivity extends AppCompatActivity {
         final Double[] randomDbA = new Double[1];
         final Double[] randomDbB = new Double[1];
 
-        CountDownTimer timer = new CountDownTimer(10000, 1000) {
+        CountDownTimer timer = new CountDownTimer(60000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -269,6 +285,7 @@ public class MatchActivity extends AppCompatActivity {
         }.start();
     }
 
+    //Desabilita botões durante o desempate para evitar problemas de adulteração de pontuações.
     public void disablePointsButtons () {
 
         btnAdvrungh.setEnabled(false);
@@ -280,6 +297,7 @@ public class MatchActivity extends AppCompatActivity {
         btnPlifTeamB.setEnabled(false);
     }
 
+    //Parte da função que desabilita todas as views das activities, para não haver adulteração de pontos
     public void setWinner (Match match) {
 
         disablePointsButtons();
@@ -299,5 +317,15 @@ public class MatchActivity extends AppCompatActivity {
         daoChampionship.saveEndOfMatch(match);
     }
 
-
+    //Configuração do botão de penalidades (Advrunghs)
+    public void setupBtnAdvrungh () {
+        btnAdvrungh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MatchActivity.this, ListTeamsActivity.class);
+                intent.putExtra("advrung", true);
+                startActivity(intent);
+            }
+        });
+    }
 }

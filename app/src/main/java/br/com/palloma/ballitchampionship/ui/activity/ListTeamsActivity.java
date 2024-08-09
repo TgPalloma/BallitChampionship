@@ -7,15 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import br.com.palloma.ballitchampionship.R;
@@ -24,10 +22,11 @@ import br.com.palloma.ballitchampionship.dao.TeamDAO;
 import br.com.palloma.ballitchampionship.data.Teams;
 import br.com.palloma.ballitchampionship.model.Team;
 import br.com.palloma.ballitchampionship.ui.adapter.TeamAdapter;
+import br.com.palloma.ballitchampionship.utils.SortList;
 
 public class ListTeamsActivity extends AppCompatActivity {
 
-    RecyclerView listTeam;
+    RecyclerView rvListTeam;
     FloatingActionButton fabAddTeam;
     FloatingActionButton fabHelp;
     Button btnStarChampionship;
@@ -36,13 +35,19 @@ public class ListTeamsActivity extends AppCompatActivity {
     private final ChanpionshipDAO csDao = new ChanpionshipDAO();
     private final Teams teams = new Teams();
 
+    private Boolean advrung = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_teams);
 
-        if (teamDao.getTeamsList().isEmpty())
+        if (teamDao.getTeamsList().isEmpty() && !csDao.getProgressStatus())
             teams.teamXP();
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null)
+            advrung = extras.getBoolean("advrung");
 
         setupViews();
         setupListView();
@@ -61,7 +66,7 @@ public class ListTeamsActivity extends AppCompatActivity {
     }
 
     public void setupViews() {
-        listTeam = findViewById(R.id.rv_team_list);
+        rvListTeam = findViewById(R.id.rv_team_list);
         fabAddTeam = findViewById(R.id.fab_add_team);
         fabHelp = findViewById(R.id.fab_help);
         btnStarChampionship = findViewById(R.id.bt_star_championship);
@@ -69,9 +74,9 @@ public class ListTeamsActivity extends AppCompatActivity {
 
     public void setupListView () {
         Intent intent = new Intent(ListTeamsActivity.this, TeamRegisterActivity.class);
-        TeamAdapter adapter = new TeamAdapter(teamDao.getTeamsList(), ListTeamsActivity.this, intent);
-        listTeam.setLayoutManager(new LinearLayoutManager(this));
-        listTeam.setAdapter(adapter);
+        TeamAdapter adapter = new TeamAdapter(teamDao.getTeamsList(), ListTeamsActivity.this, intent, advrung);
+        rvListTeam.setLayoutManager(new LinearLayoutManager(this));
+        rvListTeam.setAdapter(adapter);
     }
 
     public void addTeam() {
@@ -111,7 +116,8 @@ public class ListTeamsActivity extends AppCompatActivity {
             btnStarChampionship.setText("INICIAR CAMPEONATO");
         } else {
             btnStarChampionship.setText("ACESSAR CAMPEONATO EM ANDAMENTO");
-            fabAddTeam.setEnabled(false);
+            fabAddTeam.setVisibility(View.INVISIBLE);
+            fabHelp.setVisibility(View.INVISIBLE);
         }
 
         btnStarChampionship.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +133,7 @@ public class ListTeamsActivity extends AppCompatActivity {
                 }
 
                 startActivity(intent);
+                finish();
             }
         });
     }

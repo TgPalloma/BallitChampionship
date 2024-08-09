@@ -62,7 +62,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvnu_point_team_a"
                 tools:text="Grito de guerra do time A aqui!" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_matche_blot_team_a"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -76,12 +76,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_warcry_match_team_a" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bt_matche_plif_team_a"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15sp"
-                android:text="PLIFT"
+                android:text="PLIF"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +97,7 @@
         android:id="@+id/cv_matche_teamB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#25FF0000"
+        android:backgroundTint="#2F0032C7"
         android:layout_margin="10dp"
         app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +167,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15sp"
-                android:text="PLIFT"
+                android:text="PLIF"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
